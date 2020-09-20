@@ -52,7 +52,7 @@ class weightGenerator:
         self.dictKeywords = {int(os.path.splitext(os.path.basename(filename))[0]) : [keyword for keyword in re.split("\n", "".join(open(filename,"r+").readlines())) if keyword] for filename in listFiles}
         return self.dictKeywords
     
-    #function to find combinations of any 2 research papers
+    #function to find combination pairs of 2 research papers at a time
     def rSubset(self, arr): 
         self.nodesPair = list(combinations(arr, self.subsetSize)) 
         return self.nodesPair
