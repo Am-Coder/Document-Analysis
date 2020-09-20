@@ -19,9 +19,7 @@ class Graph:
     def __init__(self,vertices): 
         self.V = vertices #No. of vertices 
         self.V_org = vertices 
-        self.graph = defaultdict(list) # default dictionary to store graph 
-        self.path = "C:/Users/Shubhi/Downloads/Krapivin2009/keys/*.key"
-        self.dictKeywords = {}
+        self.graph = defaultdict(list) # default dictionary to store graph
         
     # function to add an edge to graph 
     def addEdge(self,u,v,w): 
