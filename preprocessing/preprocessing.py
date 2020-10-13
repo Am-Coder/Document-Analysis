@@ -33,6 +33,8 @@ print(lancaster.stem("works"))
 print(lancaster.stem("worked"))
 print(lancaster.stem("working"))
 
+
+
 #create an object of class WordNetLemmatizer
 wordnet_lemmatizer = WordNetLemmatizer()
 
