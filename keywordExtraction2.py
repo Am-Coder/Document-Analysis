@@ -1,4 +1,4 @@
-// pip install keybert
+# pip install keybert
 from keybert import KeyBERT
 
 doc = """
@@ -16,37 +16,37 @@ doc = """
 model = KeyBERT('distilbert-base-nli-mean-tokens')
 keywords = model.extract_keywords(doc)
 
-//Here set keyphrase_length to set the length of the resulting keywords/keyphrases:
+#Here set keyphrase_length to set the length of the resulting keywords/keyphrases:
 
 model.extract_keywords(doc, keyphrase_ngram_range=(1, 1), stop_words=None)
-/* output 
+""" output 
  ['learning', 
  'training', 
  'algorithm', 
  'class', 
  'mapping']
- */
+ """
  
-//To extract keyphrases, simply set keyphrase_length to 2 or higher depending on the number of words you would like in the resulting keyphrases:
+#To extract keyphrases, simply set keyphrase_length to 2 or higher depending on the number of words you would like in the resulting keyphrases:
 
 model.extract_keywords(doc, keyphrase_ngram_range=(1, 2), stop_words=None)
-/* output
+""" output
 ['learning algorithm',
  'learning machine',
  'machine learning',
  'supervised learning',
  'learning function']
- */
+"""
  
-//To diversity the results, we take the 2 x top_n most similar words/phrases to the document. Then, we take all top_n combinations from the 2 x top_n words and extract the 
-combination that are the least similar to each other by cosine similarity.
+#To diversity the results, we take the 2 x top_n most similar words/phrases to the document. Then, we take all top_n combinations from the 2 x top_n words and extract the 
+#combination that are the least similar to each other by cosine similarity.
 
 model.extract_keywords(doc, keyphrase_ngram_range=(3, 3), stop_words='english', 
                            use_maxsum=True, nr_candidates=20, top_n=5)
-/* output
+""" output
 ['set training examples',
  'generalize training data',
  'requires learning algorithm',
  'superivsed learning algorithm',
  'learning machine learning']
- */
+ """
