@@ -30,14 +30,15 @@ class Graph:
             for node in self.graph[i]:
                 print(str(node.dest) + "(Weight = " + str(node.wt) + ")" + " ")
             print("\n")
+
     
     def BFS(self, s, max_levels):
-        visited = [False] * (self.V + 1)
+        visited = set()
  
         queue = []
  
         queue.append(s)
-        visited[s] = True
+        visited.add(s)
         level = 0
         result = {}
         while queue:
@@ -46,20 +47,19 @@ class Graph:
             
             while queue:
                 s = queue.pop(0)
-                visited[s] = True
+                visited.add(s)
                 result[level].append(s)
                 for node in self.graph[s]:
-                    if visited[node.dest] == False:
+                    if node.dest not in visited:
                         aux.append(node.dest)
-                        visited[node.dest] = True
+                        visited.add(node.dest)
             level += 1
             if level > max_levels:
                 break
             for node in aux:
                 queue.append(node)
             
-        return result
-            
+        return result            
                     
 # Create a graph SAMPLE use 
 g = Graph(4) 
@@ -70,3 +70,12 @@ g.addEdge(1, 3, 1)
 g.addEdge(2, 3, 2) 
 # g.printGraph()
 print(g.BFS(3,3))
+
+g = Graph(4) 
+g.addEdge('a', 'b', 2) 
+g.addEdge('a', 'c', 2) 
+g.addEdge('b', 'c', 1) 
+g.addEdge('b', 'd', 1) 
+g.addEdge('c', 'd', 2) 
+# g.printGraph()
+print(g.BFS('d',3))
