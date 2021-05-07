@@ -15,6 +15,18 @@ from nltk import word_tokenize
 from scipy import spatial
 from nltk.metrics import edit_distance
 from collections import defaultdict 
+from WordNet import WordNet
+
+#Class to represent an un-directed graph using adjacency list representation 
+
+#Node structure for graph
+class Node:
+
+    def __init__(self,src,dest,wt):
+        self.src = src
+        self.dest = dest
+        self.wt = wt
+
 
 #Class to represent an un-directed graph using adjacency list representation 
 class Graph: 
@@ -43,14 +55,12 @@ class Graph:
             s = s + "\n"
             print("\n")
         return s
-    
 
-    #function to get BFS results for a given node till the given level
     def BFS(self, s, max_levels):
         visited = set()
- 
+         
         queue = []
- 
+        wordNet = WordNet()
         queue.append((s,0,0,1))
         visited.add(s)
         level = 0
@@ -66,11 +76,11 @@ class Graph:
                 for node in self.graph[s[0]]:
                     if node.dest not in visited:
                         
-                        #Wordnet Similarity
-                        q1 = clean_sentence(s[0])
-                        q2 = clean_sentence(node.dest)
+#                         Wordnet Similarity
+                        q1 = wordNet.clean_sentence(s[0])
+                        q2 = wordNet.clean_sentence(node.dest)
                         sim = 0
-                        sim = semanticSimilarity(q1, q2)
+                        sim = wordNet.semanticSimilarity(q1, q2)
 
                         sumOfCooccurence = 0
                         for chi in self.graph[node.dest]:
@@ -90,16 +100,17 @@ class Graph:
                         solution.append( ( tup[0], (tup[1] + np.exp(tup[3]))/np.exp(tup[2]) ) )
         return solution            
     
-    def exportNetwork(self, filename = "output"):
+    def export_network(self, filename = "output"):
         filename += ".json"
         obj = jsonpickle.encode(self.graph)
         with open(filename, "w") as outfile: 
             json.dump(obj, outfile)
 
-    def importNetwork(self, filename = "output"):
+    def import_network(self, filename = "output"):
         filename += ".json"
         with open(filename) as json_file:
             data = json.load(json_file)
             self.graph = jsonpickle.decode(data)
             self.V = len(self.graph)
             self.V_org = len(self.graph)
+
