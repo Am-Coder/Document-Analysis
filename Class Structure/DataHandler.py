@@ -1,3 +1,6 @@
+import pandas as pd
+import pathlib
+
 class DataHandler:
     def __init__(self, path):
         self.type = pathlib.Path(path).suffix
