@@ -16,17 +16,7 @@ from scipy import spatial
 from nltk.metrics import edit_distance
 from collections import defaultdict 
 from WordNet import WordNet
-
-#Class to represent an un-directed graph using adjacency list representation 
-
-#Node structure for graph
-class Node:
-
-    def __init__(self,src,dest,wt):
-        self.src = src
-        self.dest = dest
-        self.wt = wt
-
+from Node import Node
 
 #Class to represent an un-directed graph using adjacency list representation 
 class Graph: 
@@ -100,17 +90,16 @@ class Graph:
                         solution.append( ( tup[0], (tup[1] + np.exp(tup[3]))/np.exp(tup[2]) ) )
         return solution            
     
-    def export_network(self, filename = "output"):
+    def exportNetwork(self, filename = "output"):
         filename += ".json"
         obj = jsonpickle.encode(self.graph)
         with open(filename, "w") as outfile: 
             json.dump(obj, outfile)
 
-    def import_network(self, filename = "output"):
+    def importNetwork(self, filename = "output"):
         filename += ".json"
         with open(filename) as json_file:
             data = json.load(json_file)
             self.graph = jsonpickle.decode(data)
             self.V = len(self.graph)
             self.V_org = len(self.graph)
-

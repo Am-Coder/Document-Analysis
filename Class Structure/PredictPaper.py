@@ -15,6 +15,8 @@ from nltk import word_tokenize
 from scipy import spatial
 from nltk.metrics import edit_distance
 from collections import defaultdict 
+from DataHandler import DataHandler
+from Graph import Graph
 
 class PredictPaper:
     def __init__(self, dataPath, graphPath):

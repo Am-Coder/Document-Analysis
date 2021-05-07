@@ -61,12 +61,12 @@ class WordNet:
         for i in range(len(q1)):
             for j in range(len(q2)):
                 if q1[i][1] == None or q2[j][1] == None:
-                    sim = edit(q1[i][0], q2[j][0])
+                    sim = self.edit(q1[i][0], q2[j][0])
                 else:
-                    sim = path(wn.synset(q1[i][1]), wn.synset(q2[j][1]))
+                    sim = self.path(wn.synset(q1[i][1]), wn.synset(q2[j][1]))
 
                 if sim == None:
-                    sim = edit(q1[i][0], q2[j][0])
+                    sim = self.edit(q1[i][0], q2[j][0])
 
                 R[i, j] = sim
 
@@ -81,12 +81,12 @@ class WordNet:
         for i in range(len(q1)):
             for j in range(len(q2)):
                 if q1[i][1] == None or q2[j][1] == None:
-                    sim = edit(q1[i][0], q2[j][0])
+                    sim = self.edit(q1[i][0], q2[j][0])
                 else:
-                    sim = wup(wn.synset(q1[i][1]), wn.synset(q2[j][1]))
+                    sim = self.wup(wn.synset(q1[i][1]), wn.synset(q2[j][1]))
 
                 if sim == None:
-                    sim = edit(q1[i][0], q2[j][0])
+                    sim = self.edit(q1[i][0], q2[j][0])
 
                 R[i, j] = sim
 
