@@ -33,8 +33,11 @@ class PredictPaper:
         for queryKey in queryKeyList:
             queryKey = queryKey.strip().lower()
             queryDict = self.g.BFS(queryKey, 3)
-            self.querySet.extend([queryKey])
-            self.querySet.extend([item[0] for item in queryDict])
+            if queryKey not in self.querySet:
+              self.querySet.append(queryKey)
+            for item in queryDict:
+              if item[0] not in self.querySet:
+                self.querySet.append(item[0])
         return self.querySet
 
 
@@ -43,7 +46,7 @@ class PredictPaper:
     def predict(self, queryKeyList, commonWordsCount):
         self.querySet = self.predictUtil(queryKeyList)
         ran = len(self.dataset['Rake keywords'])
-        for i in range(1000):
+        for i in range(2000):
             val = self.dataset['Rake keywords'][i]
             keywords = val.split(";")
             com = self.calcCommon(keywords)
