@@ -4,6 +4,8 @@ from django.urls import reverse
 from .recommend_utils.PredictPaper import PredictPaper, Graph, DataHandler
 from .recommend_utils.KeywordExtractor import KeywordExtractor
 import mimetypes
+import os
+from django.conf import settings
 
 DATA_PATH = "Data.xlsx"
 GRAPH_PATH = "output2k"
@@ -12,10 +14,7 @@ GRAPH_PATH = "output2k"
 # Create your views here.
 def index(request):
     print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
-    context = {
-        'papers': ['paper1', 'paper2'],
-    }
-    return render(request, 'Research.html', context)
+    return render(request, 'Research.html')
 
 
 def recommend_keywords(request):
@@ -56,9 +55,8 @@ def recommend_abstract(request):
 
 def download_file(request, filepath):
     # fill these variables with real values
-    print(filepath)
-    fl_path = '/file/path'
-    filename = 'downloaded_file_name.extension'
+    fl_path = settings.BASE_DIR+'/papers/'+filepath+'.txt'
+    filename = filepath + '.txt'
     fl = open(fl_path, 'r')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)

@@ -14,7 +14,7 @@
 </head>
 <body>
     <h2>Research Paper Recommendation</h2>
-    <h1>Recommender</h1>
+    <h1>Journal Locator</h1>
     <div class="bg-image"></div>
     <div class="bg-text">
         <h2>OR</h2>
@@ -40,18 +40,26 @@
         </div>
         </div>
       </form>
-        <h2>Recommendations :</h2>
-        <ul>
-            {% for paper in papers %}
+
+    <div>
+        <p class="search_results_h"><b>Search Results</b></p>
+        <ul style="list-style-type:none;">
+            {% for paper,val in papers.items %}
             <li>
-                <a href="/Data.xlsx">
-                {{ paper }}
-                </a>
+                <hr>
+                <div>
+                    <a href="/app/download/{{ paper }}" id="paper_title">
+                        {{ paper }} | {{ val.1 }} | {{ val.2 }}
+                    </a>
+                </div>
+                <div id="paper_abstract">
+                    {{ val.3 }}
+                </div>
             </li>
             {% endfor %}
+
         </ul>
-
-
+    </div>
     <!--footer-->
     <div class="footer">
         <p>Copyright &#169; 2021. All Rights Reserved.</p>
