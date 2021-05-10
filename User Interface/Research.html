@@ -12,15 +12,14 @@
 
 </head>
 <body>
-    <h2>Research Paper Recommendation</h2>
-    <h1>Recommender</h1>
+    <h2>Research Paper Recommendation System</h2>
+    <h1>Journal Locator</h1>
     <div>
         <nav class="navbar navbar-default">
             <div class="container">
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">HOME</a></li>
-                  <li><a href="#">LOGIN</a></li>
+                    <li><a href="#">HOME</a></li>
                   <li><a href="#">HELP</a></li>
                 </ul>
               </div>
@@ -48,6 +47,26 @@
             </div>
             </div>
        </form>
+       <div>
+       <p class="search_results_h"><b>Search Results</b></p>
+
+        <ul>
+            {% for paper in papers %}
+            <li>
+              <hr>
+                <div>
+                <a href="/Data.xlsx" id="paper_title">
+                {{ paper id}} , {{paper domain}} ,{{paper area}}
+                </a>
+                </div>
+                <div id="paper_abstract">
+                    {{paper abstract}}
+                </div>
+                <hr>
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
     <!--footer-->
     <div class="footer">
         <p>Copyright &#169; 2021. All Rights Reserved.</p>
