@@ -8,6 +8,6 @@ urlpatterns = [
     path('', views.index, name='home-page'),
     path('recommend-keywords/', views.recommend_keywords, name='recommend-paper-keywords'),
     path('recommend-abstract/', views.recommend_abstract, name='recommend-paper-abstract'),
-    path('download/<str:filepath>/', views.download_file, name='recommend'),
+    path('download/<str:filepath>/', views.download_file, name='recommend-paper-download'),
 
 ]

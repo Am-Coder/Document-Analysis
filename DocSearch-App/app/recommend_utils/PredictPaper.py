@@ -54,7 +54,9 @@ class PredictPaper:
                 self.result[i] = com
         self.result = dict(sorted(self.result.items(), key=lambda kv: (kv[1], kv[0]), reverse=True))
         for key in self.result:
-            self.result[key] = [self.result[key], self.dataset['area'][key].strip().lower()]
+            self.result[key] = [self.result[key], self.dataset['area'][key].strip().lower(),
+                                self.dataset['Domain'][key].strip().lower(),
+                                self.dataset['Abstract'][key].strip()[0:250] + "...."]
         print(self.result)
         return self.result
 
